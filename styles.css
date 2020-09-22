@@ -1,0 +1,8 @@
+h1.mainTitle{
+    color: darkslategray;
+    font-family: 'Satisfy', cursive;
+}
+div.encabezado{
+    padding-inline-start: 2%;
+    padding-top: 2%;
+}
