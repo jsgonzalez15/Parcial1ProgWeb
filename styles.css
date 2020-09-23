@@ -24,7 +24,7 @@ div.theMenu{
 div.Menu{
     margin: 1%;
 }
-p.menuItem{
+button.menuItem{
     color: white;
     font: 100;
 }
@@ -42,4 +42,7 @@ button.ConfirmOrder{
     color: black;
     background-color: antiquewhite;
     border-color: black;
+}
+div.contactUs{
+    margin:3%;
 }

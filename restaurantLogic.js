@@ -12,38 +12,120 @@ let pA = new Promise((resolve, reject) => {
     };
     reqA.send()
 })
+let nombreBotonesCategorias=[];
 
-
+/** Ejecucion inicial de Promesa Javascript 
+ * Agrega la categoria actual como titulo 
+ * Agrega las opciones de categoria en el menu
+ *  */
 pA.then((respuestaA) => {
-    jsonResponseA = JSON.parse(respuestaA) //JSON de respuesta obtenida
+    jsonResponseA = JSON.parse(respuestaA); //JSON de respuesta obtenida
+    let categoriaActual= jsonResponseA[0]["name"]; //Primer categoria como default
+    displayCategoriaActual(categoriaActual); //actualizacion de título categoría actual
+    displayCards(jsonResponseA[0]["products"]); //actualización de listado actual
 
     for (i = 0; i < jsonResponseA.length; i++) {
-        console.log(jsonResponseA[i])
-        addEventSquirrel(i, jsonResponseA[i])
-        //if (jsonResponse.[""]>maximaCantidad){
-        //maximaCantidad=jsonResponse[i][""]
-        //maximoVendedor=jsonResponse[i]["nombreProducto"]
-        //}
+        console.log(jsonResponseA[i]);
+        addCategoria(i,jsonResponseA[i]);
+        nombreBotonesCategorias.push(jsonResponseA[i]["name"])
     }
 }).catch((respuesta) => {
     console.log(respuesta)
 })
-//alert('hola');
-function addEventSquirrel(i, data) {
-    let table = document.querySelector(".tableEvents");
-    let row = document.createElement("tr");
-    let cell1 = document.createElement("td");
-    let cell2 = document.createElement("td");
-    let cell3 = document.createElement("td");
-    cell1.innerHTML = i + 1;
-    cell2.innerHTML = data["events"];
-    cell3.innerHTML = data["squirrel"];
-    row.appendChild(cell1);
-    row.appendChild(cell2);
-    row.appendChild(cell3);
-    if (data["squirrel"]) {
-        row.classList.add("table-danger")
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//------------------------------------------Funciones de actualización------------------------------------------//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/** Funcion para cambiar la categoria
+ * Agrega la categoria como un div col con un boton interno
+ * FALTA ASOCIAR FUNCION DE DISPLAY DE CARDS
+ *  */
+function cambiarCategoria(i,data){
+    categoriaActual=data["name"];
+    console.log(categoriaActual);
+    pA.then((respuestaA)=>{
+        jsonResponseA = JSON.parse(respuestaA); //JSON de respuesta obtenida
+        displayCategoriaActual(categoriaActual)
+        displayCards(jsonResponseA[i]["products"]);
+    })
+    
+}
+/** Funcion para agregar cada una de las categorias en el menu de busqueda
+ * Agrega la categoria como un div col con un boton interno
+ *  */
+function addCategoria(i,data) {
+    let div = document.querySelector(".theMenu");
+    let col = document.createElement("div");
+    col.className = "col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"
+    let categoriaButton = document.createElement("button");
+    categoriaButton.className = "btn menuItem";
+    categoriaButton.id=data["name"]
+    categoriaButton.innerHTML = data["name"];
+    categoriaButton.onclick=function(){cambiarCategoria(i,data);};
+
+    col.appendChild(categoriaButton);
+    div.appendChild(col);
+}
+/** Funcion para agregar actualizar la categoria actual
+ *  */
+function displayCategoriaActual(categoria){
+    let div = document.querySelector(".TituloCategoria");
+    while (div.firstChild) {
+        div.removeChild(div.lastChild);
+      } 
+    let h2 = document.createElement("h2");
+    h2.innerHTML=categoria;
+    div.appendChild(h2);
+}
+/** Funcion para agregar cards segun lista recibida
+ *  */
+function displayCards(products){
+    let div=document.querySelector(".theCards");
+    while (div.firstChild) {
+        div.removeChild(div.lastChild);
+      }
+    for (j = 0; j < products.length; j++) {
+    let col=document.createElement("div")
+    let card=document.createElement("div");
+    let currentImg=document.createElement("img");
+    let cardBody=document.createElement("div");
+    let cardTitle=document.createElement("h5");
+    let cardText= document.createElement("p");
+    let cardPrice=document.createElement("b");
+    let newLine=document.createElement("br");
+    let cardButton=document.createElement("a");
+
+    col.className = "col-xl-1 col-lg-1 col-md-1 col-sm-2 col-2";
+    card.className="card";
+    card.style="width: 18rem;";
+    currentImg.className="card-img-top";
+    cardBody.className="card-body";
+    cardTitle.className="card-title";
+    cardText.className="card-text";
+    cardButton.className="btn btn-dark ";
+    cardButton.id=products[j]["name"];
+    cardButton.onclick()=function(){};
+    
+    currentImg.src=products[j]["image"];
+    currentImg.alt="Card image cap";
+    cardTitle.innerHTML=products[j]["name"];
+    cardText.innerHTML=products[j]["description"];
+    cardPrice.innerHTML=products[j]["price"];
+    cardButton.innerHTML="Add to car";
+
+    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(newLine);
+    cardBody.appendChild(cardText);
+    cardBody.appendChild(newLine);
+    cardBody.appendChild(cardPrice);
+    cardBody.appendChild(newLine);
+    cardBody.appendChild(cardButton);
+
+    card.appendChild(currentImg);
+    card.appendChild(cardBody);
+
+    col.appendChild(card);
+    div.appendChild(card);
     }
-    table.appendChild(row);
-    console.log("cell2")
 }
