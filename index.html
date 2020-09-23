@@ -21,7 +21,8 @@
         <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-4">
             <div class="row justify-content-center align-items-center h-100">
                 <div class="col-6 align-items-center topIcons w-100">
-                    <img src="https://i.imgur.com/1EKrQIi.png" height="50px" width="50px" data-toggle="collapse"role="button" onclick="showTable()">
+                    <img src="https://i.imgur.com/1EKrQIi.png" height="50px" width="50px" data-toggle="collapse"
+                        role="button" onclick="showTable()">
                 </div>
                 <div class="col-6 align-items-center topIcons topIconsItems">
                     <h6>0 items</h6>
@@ -77,12 +78,35 @@
                 <b>Total =ejem</b>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-6">
-                <button type="button" class="btn CancelOrder">Cancel</button>
-                <button type="button" class="btn ConfirmOrder">Confirm Order</button>
+                <button type="button" class="btn CancelOrder" data-toggle="modal"
+                    data-target="#confirmCancel">Cancel</button>
+                <button type="button" class="btn ConfirmOrder" onclick="confirmTable()">Confirm Order</button>
             </div>
         </div>
     </div>
-    <div class="row justify-content-between contactUs">
+
+    <div class="modal fade" id="confirmCancel" tabindex="-1" role="dialog" aria-labelledby="confirmCancelLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmCancelLabel">Cancel Order</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h6>Are you sure about cancelling the order?</h6>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn ConfirmOrder" onclick="cleanTable()">Yes, I want to cancel de order</button>
+                    <button type="button" class="btn CancelOrder" data-dismiss="modal">No, I want to continue adding products</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer justify-content-between contactUs">
         <div class="col text-center">
             <h6>Contact us: +57 3102105253 - info@restaurant.com - @restaurant</h6>
         </div>

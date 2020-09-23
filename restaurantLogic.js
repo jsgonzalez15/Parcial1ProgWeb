@@ -35,12 +35,13 @@ pA.then((respuestaA) => {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 let listaProductosCarrito = [];
 let nItemsCarrito = 0;
+let costoTotalCarrito=0;
 /** Funcion para cambiar la categoria
  * Agrega la categoria como un div col con un boton interno
  *  */
 function cambiarCategoria(i, data) {
     categoriaActual = data["name"];
-    console.log(categoriaActual);
+    //console.log(categoriaActual);
     pA.then((respuestaA) => {
         jsonResponseA = JSON.parse(respuestaA); //JSON de respuesta obtenida
         displayCategoriaActual(categoriaActual)
@@ -83,7 +84,7 @@ function agregarProductoAcarrito(dataProduct, title) {
     }
     h6.innerHTML = nItemsCarrito + " items";
     nIcons.appendChild(h6);
-    console.log(listaProductosCarrito);
+    //console.log(listaProductosCarrito);
 }
 /** Funcion para agregar cada una de las categorias en el menu de busqueda
  * Agrega la categoria como un div col con un boton interno
@@ -112,7 +113,40 @@ function displayCategoriaActual(categoria) {
     h2.innerHTML = categoria;
     div.appendChild(h2);
 }
-let costoTotalCarrito=0;
+
+/** Funcion para confirmar carrito actual, limpiar contenido y recibir compra por consola
+ *  */
+function confirmTable() {
+    console.log(listaProductosCarrito);
+    cleanTable();
+}
+
+/** Funcion para limpiar la tabla y la lista guardada del carrito actual
+ *  */
+function cleanTable() {
+    listaProductosCarrito = [];
+    nItemsCarrito = 0;
+    costoTotalCarrito=0;
+    let carritoTable = document.querySelector(".tablaCarrito");
+    while (carritoTable.firstChild) {
+        carritoTable.removeChild(carritoTable.lastChild);
+    }
+    let total=document.querySelector(".TotalCarrito");
+    let b=document.createElement("b");
+    b.innerHTML="Total: $0";
+    while (total.firstChild) {
+        total.removeChild(total.lastChild);
+    }
+    total.appendChild(b);
+    let nIcons = document.querySelector(".topIconsItems");
+    let h6 = document.createElement("h6");
+    while (nIcons.firstChild) {
+        nIcons.removeChild(nIcons.lastChild);
+    }
+    h6.innerHTML = "0 items";
+    nIcons.appendChild(h6);
+}
+
 /** Funcion para ocultar menu y mostrar carrito actual
  *  */
 function showTable() {
