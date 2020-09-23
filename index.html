@@ -21,10 +21,10 @@
         <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-4">
             <div class="row justify-content-center align-items-center h-100">
                 <div class="col-6 align-items-center topIcons w-100">
-                    <img src="https://i.imgur.com/1EKrQIi.png" height="50px" width="50px">
+                    <img src="https://i.imgur.com/1EKrQIi.png" height="50px" width="50px" data-toggle="collapse"role="button" onclick="showTable()">
                 </div>
-                <div class="col-6 align-items-center topIcons">
-                    <h6>items</h6>
+                <div class="col-6 align-items-center topIcons topIconsItems">
+                    <h6>0 items</h6>
                 </div>
             </div>
         </div>
@@ -34,52 +34,54 @@
             <img src="https://i.imgur.com/S8Ffdqa.png" class="img-fluid bannerImage" alt="Responsive image">
         </div>
     </div>
-    <div class="row bg-dark theMenu justify-content-start">
 
-    </div>
-    <div class="row justify-content-around orderDetail border-top">
-        <div class="col-12 align-items-center text-center border TituloCategoria">
+    <div class="menuSection">
+        <div class="row bg-dark theMenu justify-content-start">
+        </div>
+        <div class="row justify-content-around orderDetail border-top">
+            <div class="col-12 align-items-center text-center border TituloCategoria">
+            </div>
+        </div>
+        <div class="row justify-content-center theCards">
         </div>
     </div>
-    <div class="row justify-content-center theCards">
-    </div>
-    
 
-
-    <div class="row justify-content-around orderDetail border-top ">
-        <div class="col-12 align-items-center text-center border">
-            <h2>Order Detail</h2>
+    <div class="orderSection collapse">
+        <div class="row justify-content-around orderDetail border-top ">
+            <div class="col-12 align-items-center text-center border">
+                <h2>Order Detail</h2>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Qty.</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Item1</td>
+                    <td>Qty1</td>
+                    <td>Description1</td>
+                    <td>Amount1</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row justify-content-between">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-4">
+                <b>Total =ejem</b>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-6">
+                <button type="button" class="btn CancelOrder">Cancel</button>
+                <button type="button" class="btn ConfirmOrder">Confirm Order</button>
+            </div>
         </div>
     </div>
-    <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Item</th>
-            <th scope="col">Qty.</th>
-            <th scope="col">Description</th>
-            <th scope="col">Unit Price</th>
-            <th scope="col">Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Item1</td>
-            <td>Qty1</td>
-            <td>Description1</td>
-            <td>Amount1</td>
-          </tr>
-        </tbody>
-    </table>
-    <div class="row justify-content-between">
-        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-4">
-            <b>Total =ejem</b>
-        </div>
-        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-6">
-            <button type="button" class="btn CancelOrder">Cancel</button>
-            <button type="button" class="btn ConfirmOrder">Confirm Order</button>
-        </div>
-    </div>  
     <div class="row justify-content-between contactUs">
         <div class="col text-center">
             <h6>Contact us: +57 3102105253 - info@restaurant.com - @restaurant</h6>
@@ -96,5 +98,6 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript" src="restaurantLogic.js"></script>
-</body> 
+</body>
+
 </html>
