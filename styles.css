@@ -3,7 +3,8 @@ h1.mainTitle{
     font-family: 'Satisfy', cursive;
 }
 div.encabezado{
-    padding-inline-start: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
     padding-top: 1%;
 }
 div.topIcons{
